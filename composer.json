@@ -1,0 +1,17 @@
+{
+    "name": "filipekiss/pharmacist",
+    "description": "A CLI utilitie to generate .phar archives.",
+    "require": {
+        "docopt/docopt": "dev-master",
+        "league/climate": "dev-master",
+        "symfony/console": "~3.0@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Filipe Kiss",
+            "email": "eu@filipekiss.com.br"
+        }
+    ],
+    "minimum-stability": "dev"
+}
