@@ -2,9 +2,9 @@
     "name": "filipekiss/pharmacist",
     "description": "A CLI utility to generate .phar archives.",
     "require": {
-        "league/climate": "dev-master",
-        "symfony/console": "~3.0@dev",
-        "league/flysystem": "~1.1@dev"
+        "symfony/console": "2.6.*",
+        "league/flysystem": "1.0.*",
+        "league/climate": "2.6.1"
     },
     "license": "MIT",
     "authors": [
