@@ -36,7 +36,13 @@ Class CreateCommand extends PharmacistCommand
                 InputOption::VALUE_OPTIONAL,
                 'The default entry point when calling from Web. (default: same as cli)',
                 null
-                );
+                )
+            ->addOption(
+                'include-files',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'A Regex (PCRE) to match the files which will be included when generating the PHAR archive.',
+                "/(src|vendor)/");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
@@ -44,6 +50,7 @@ Class CreateCommand extends PharmacistCommand
         $name = $input->getArgument('name');
         $cliEntry = $input->getOption('cli-entry');
         $webEntry = ($input->getOption('web-entry') ? $input->getOption('web-entry') : $cliEntry);
-        $this->pharmacist->create($source, $name, $cliEntry, $webEntry);
+        $includeFiles = $input->getOption('include-files');
+        $this->pharmacist->create($source, $name, $cliEntry, $webEntry, $includeFiles);
     }
 }
