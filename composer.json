@@ -2,9 +2,10 @@
     "name": "filipekiss/pharmacist",
     "description": "A CLI utilitie to generate .phar archives.",
     "require": {
-        "docopt/docopt": "dev-master",
         "league/climate": "dev-master",
-        "symfony/console": "~3.0@dev"
+        "symfony/console": "~3.0@dev",
+        "illuminate/container": "~5.1@dev",
+        "league/flysystem": "~1.1@dev"
     },
     "license": "MIT",
     "authors": [
@@ -13,5 +14,10 @@
             "email": "eu@filipekiss.com.br"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload" : {
+        "psr-4" : {
+            "Pharmacist\\": "src/"
+        }
+    }
 }
