@@ -34,7 +34,7 @@ Class Pharmacist
      * 
      * @return void
      */
-    public function create($source, $name, $cliEntry, $webEntry) {
+    public function create($source, $name, $cliEntry, $webEntry, $includeFiles) {
         $isValidSource = $this->validateSource($source, $cliEntry, $webEntry);
         if (!$isValidSource) {
             if ($cliEntry === $webEntry) {
@@ -66,7 +66,8 @@ Class Pharmacist
             ]
         ];
         $this->cli->table($pharInfo);
-        $this->buildPhar($source, $name, $cliEntry, $webEntry);
+        $filesystem = $this->filesystemFactory->build(getcwd());
+        $this->buildPhar($source, $name, $cliEntry, $webEntry, $includeFiles, $filesystem);
     }
 
     public function validateSource($source, $cliEntry, $webEntry)
@@ -76,17 +77,21 @@ Class Pharmacist
         return $isValidSource;
     }
 
-    public function buildPhar($srcDirectory, $pharName, $cliEntry, $webEntry)
+    public function buildPhar($srcDirectory, $pharName, $cliEntry, $webEntry, $includeFiles, $filesystem)
     {
+        if ($filesystem->has($pharName)) {
+            $this->cli->info("A PHAR with the name $pharName already exists. Deleting it...");
+            $filesystem->delete($pharName);
+        }
         try {
             $phar = new Phar($pharName,0,$pharName);
             $phar->startBuffering();
-            $phar->buildFromDirectory($srcDirectory);
+            $phar->buildFromDirectory($srcDirectory, $includeFiles);
             $defaultStub = $phar->createDefaultStub($cliEntry,$webEntry);
             $stub = "#!/usr/bin/env php \n". $defaultStub;
             $phar->setStub($stub);
             $phar->stopBuffering();
-            $this->cli->cyan("Your phar is ready at $pharName");
+            $this->cli->cyan("Your phar is ready at $pharName with " . $phar->count() . " entries.");
         } catch (Exception $e) {
             $this->cli->error("Something went wrong!");
             $this->cli->shout($e->getMessage);
