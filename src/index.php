@@ -17,7 +17,7 @@ $commands = [
     'create' => new CreateCommand($pharmacist)
 ];
 
-$application = new Application('Pharmacist', '0.2.1');
+$application = new Application('Pharmacist', '0.2.2');
 foreach ($commands as $id => $command) {
     $application->add($command);
 }

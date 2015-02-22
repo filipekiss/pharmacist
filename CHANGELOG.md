@@ -2,6 +2,11 @@
 
 All Notable changes to `Pharmacist\Pharmacist` will be documented in this file
 
+## 0.2.2 - 2015-02-22
+
+ - Symfony Console was issuing an error when installing this globally.
+ Requiring version 2.* instead of 2.6.*.
+ 
 ## 0.2.1 - 2015-02-22
 
  - Modified the composer.json to require the specific version instead of
