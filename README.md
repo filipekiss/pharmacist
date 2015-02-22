@@ -5,6 +5,12 @@
 
 A simple command line to generate PHAR files.
 
+## Installation
+
+``` bash
+composer global require filipekiss/pharmacist
+```
+
 ## Usage
 
 ``` bash
