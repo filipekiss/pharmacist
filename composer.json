@@ -1,17 +1,16 @@
 {
     "name": "filipekiss/pharmacist",
-    "description": "A CLI utilitie to generate .phar archives.",
+    "description": "A CLI utility to generate .phar archives.",
     "require": {
         "league/climate": "dev-master",
         "symfony/console": "~3.0@dev",
-        "illuminate/container": "~5.1@dev",
         "league/flysystem": "~1.1@dev"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Filipe Kiss",
-            "email": "eu@filipekiss.com.br"
+            "email": "me@filipekiss.com.br"
         }
     ],
     "minimum-stability": "dev",
@@ -19,5 +18,8 @@
         "psr-4" : {
             "Pharmacist\\": "src/"
         }
-    }
+    },
+    "bin" : [
+        "bin/pharmacist"
+    ]
 }
